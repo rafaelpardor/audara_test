@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    image: "mariadb:10.5.9"
+    restart: 'always'
+    volumes: 
+      - ./database/audara_test.sql:/docker-entrypoint-initdb.d/audara.sql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_USER_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
